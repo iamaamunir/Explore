@@ -24,6 +24,15 @@ exports.getAllTours = async (req, res) => {
     } else {
       query = query.select("-__v");
     }
+
+    // PAGINATION
+
+    const { page = 1, limit = 10 } = req.query;
+    query = query
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
+
     const tours = await query;
     res.status(200).json({
       status: "success",
@@ -78,7 +87,7 @@ exports.updateTour = async (req, res) => {
       new: true,
       runValidators: true,
     });
-    res.status(200).json({
+    res.status(204).json({
       status: "success",
       data: {
         tour,
