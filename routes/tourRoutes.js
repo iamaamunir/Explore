@@ -8,9 +8,13 @@ const tourController = require("../controllers/tourController");
 
 // TOUR ROUTES
 tourRouter
+  .route("/top-5-cheap")
+  .get(tourController.aliasQuery, tourController.getAllTours);
+
+tourRouter
   .route("/")
   .get(tourController.getAllTours)
-  .post( tourController.createTour);
+  .post(tourController.createTour);
 tourRouter
   .route("/:id")
   .get(tourController.getTour)
