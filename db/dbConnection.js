@@ -9,7 +9,6 @@ function connectToDb() {
   });
   mongoose.connection.on("error", (err) => {
     console.log("UNABLE TO CONNECT TO MONGODB");
-    console.log(err);
   });
 }
 
