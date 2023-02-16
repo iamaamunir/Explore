@@ -1,19 +1,24 @@
-const express = require('express');
+const express = require("express");
 
 const userRouter = express.Router();
 
-const userController = require('../controllers/userController');
+const userController = require("../controllers/userController");
+const authController = require("../controllers/authController");
 
-userRouter.param('id', userController.checkID);
+// Authentication
+
+userRouter.route("/signup").post(authController.signup);
+
+userRouter.param("id", userController.checkID);
 
 // USER ROUTES
 
 userRouter
-  .route('/')
+  .route("/")
   .get(userController.getAllUsers)
   .post(userController.createUser);
 userRouter
-  .route('/:id')
+  .route("/:id")
   .get(userController.getUser)
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
