@@ -8,6 +8,7 @@ const authController = require("../controllers/authController");
 // Authentication
 
 userRouter.route("/signup").post(authController.signup);
+userRouter.route("/login").post(authController.login);
 
 userRouter.param("id", userController.checkID);
 
